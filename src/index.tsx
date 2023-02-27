@@ -1,7 +1,7 @@
 /* @refresh reload */
 import { render } from 'solid-js/web';
 
-import './index.css';
+import "devextreme/dist/css/dx.light.css";
 import App from './App';
 
 const root = document.getElementById('root');
