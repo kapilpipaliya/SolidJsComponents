@@ -1,25 +1,17 @@
-import type { Component } from 'solid-js';
+import { TextInputField } from "./components/TextInput";
+import { newVertex } from "./components/utils";
+import { Vertex } from "./components/Form";
 
-import logo from './logo.svg';
-import styles from './App.module.css';
+const App = () => {
+  const meta = newVertex(0, ["Meta"], { id: "meta1" });
+  const vertex = newVertex(0, ["Vertex"], { id: "vertex1" });
+  const setValue = (attribute: Vertex, data: any) => {
+    console.log(data);
+  };
 
-const App: Component = () => {
   return (
-    <div class={styles.App}>
-      <header class={styles.header}>
-        <img src={logo} class={styles.logo} alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          class={styles.link}
-          href="https://github.com/solidjs/solid"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn Solid
-        </a>
-      </header>
+    <div>
+      <TextInputField meta={meta} vertex={vertex} setValue={setValue} />
     </div>
   );
 };
