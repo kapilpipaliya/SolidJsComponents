@@ -1,26 +1,26 @@
 import { createEffect, For, Show } from "solid-js";
 
-import TextBox, { Properties } from "devextreme/ui/text_box";
-import { NativeEventInfo } from "devextreme/events";
+
+import DateBox, { Properties } from "devextreme/ui/date_box";
 import { Vertex } from "./Form";
 
 export interface TextInputFieldProps extends Properties {
  meta: Vertex;
  vertex: Vertex;
- setValue(attribute: Vertex, data: any): void;
-
  errors?: string[];
  "aria-labeledby"?: string;
+
+ setValue(attribute: Vertex, data: any): void;
 }
 
-export function TextInputField(props: TextInputFieldProps) {
+export function DateInputField(props: TextInputFieldProps) {
   return (
    <div aria-labeledby={props["aria-labeledby"]}>
     <div ref={el => {
-     const instance = new TextBox(el, {
-      onChange: (e: NativeEventInfo<TextBox, KeyboardEvent>) => {
-       props.setValue(props.meta, e.component.option("value"));
-      },
+     const instance = new DateBox(el, {
+      onValueChanged: (e) => {
+       props.setValue(props.meta, (e.value));
+      }
      });
      createEffect(() => instance.option("value", props.vertex.properties[props.meta.properties.id]));
      createEffect(() => {

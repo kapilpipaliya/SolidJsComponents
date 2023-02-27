@@ -6,10 +6,10 @@ import { Vertex } from "./Form";
 export interface BooleanInputFieldProps extends Properties {
  meta: Vertex;
  vertex: Vertex;
- setValue(attribute: Vertex, data: any): void;
-
  errors?: string[];
  "aria-labeledby"?: string;
+
+ setValue(attribute: Vertex, data: any): void;
 }
 
 export function BooleanInputField(props: BooleanInputFieldProps) {
