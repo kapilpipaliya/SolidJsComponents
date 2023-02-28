@@ -24,6 +24,7 @@ export function TextInputField(props: TextInputFieldProps) {
        props.setValue(props.meta, e.component.option("value"));
       },
      });
+     console.log(props.meta.properties.id)
      createEffect(() => instance.option("value", props.vertex.properties[props.meta.properties.id]));
      createEffect(() => {
       for (const property in props.meta.properties.props as Properties) {
