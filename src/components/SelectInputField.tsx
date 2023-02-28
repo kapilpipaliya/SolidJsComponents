@@ -19,6 +19,10 @@ export function SelectInputField(props: SelectInputFieldProps) {
             <div ref={el => {
                 const instance = new SelectBox(el, {
                     items: props.items,
+                    placeholder: "Select now...",
+                    dataSource: [...props.items, 'item4'],
+                    // disabled: true,
+                    readOnly: true,
                     onValueChanged: (e: any) => {
                         props.setValue(props.meta, e.value);
                     }
