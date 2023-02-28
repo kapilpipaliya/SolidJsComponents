@@ -6,6 +6,7 @@ import { NumberInputField } from "./components/NumberInputField";
 import { TextAreaField } from "./components/TextAreaField";
 import { DateInputField } from "./components/DateInputField";
 import { SelectInputField } from "./components/SelectInputField";
+import { SwitchField } from "./components/SwitchField";
 
 const App = () => {
   const items = ['item1', 'item2', 'item3']
@@ -33,6 +34,9 @@ const App = () => {
 
       Select Input
       <SelectInputField meta={meta} vertex={vertex} setValue={setValue} items={items} />
+
+      Switch
+      <SwitchField meta={meta} vertex={vertex} setValue={setValue} />
     </div>
   );
 };
