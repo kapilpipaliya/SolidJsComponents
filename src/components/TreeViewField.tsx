@@ -1,18 +1,8 @@
 import TreeView, { Properties } from "devextreme/ui/tree_view";
 import { createEffect, For, Show } from "solid-js";
-import { Vertex } from "./Form";
+import { ComponentProps } from "./Form";
 
-export interface TreeViewProps extends Properties {
-  meta: Vertex;
-  data: Vertex;
-  items: any[];
-  errors?: string[];
-  "aria-labeledby"?: string;
-
-  setValue(attribute: Vertex, data: any): void;
-}
-
-export function TreeViewField(props: TreeViewProps) {
+export function TreeViewField(props: ComponentProps) {
   const syncSelection = (treeViewInstance: TreeView) => {
     // console.log(treeViewInstance);
     const selectedItems = treeViewInstance

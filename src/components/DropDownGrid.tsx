@@ -1,23 +1,13 @@
-import CustomStore from "devextreme/data/custom_store";
-import DropDownBox, { Properties } from "devextreme/ui/drop_down_box";
-import dxTreeView from "devextreme/ui/tree_view";
-import dxDataGrid from "devextreme/ui/data_grid";
 import { createEffect, createSignal, For, Show } from "solid-js";
-import { Vertex } from "./Form";
+import { ComponentProps } from "./Form";
+
+import DropDownBox, { Properties } from "devextreme/ui/drop_down_box";
+import dxDataGrid from "devextreme/ui/data_grid";
 import ArrayStore from "devextreme/data/array_store";
 import DataSource from "devextreme/data/data_source";
+import CustomStore from "devextreme/data/custom_store";
 
-export interface DropDownProps {
-  meta: Vertex;
-  data: Vertex;
-  items: any[];
-  errors?: string[];
-  "aria-labeledby"?: string;
-
-  setValue(attribute: Vertex, data: any): void;
-}
-
-export function DropDownGrid(props: DropDownProps) {
+export function DropDownGrid(props: ComponentProps) {
   const [treeView, setTreeView] = createSignal(null);
   const [dataGrid, setDataGrid] = createSignal(null);
 
