@@ -1,30 +1,26 @@
+import Autocomplete, {Properties} from "devextreme/ui/autocomplete";
 import { createEffect, For, Show } from "solid-js";
 import { Vertex } from "./Form";
-import SelectBox, { Properties } from "devextreme/ui/select_box";
 
 
-export interface SelectInputFieldProps extends Properties {
+export interface AutoCompleteProps extends Properties {
     meta: Vertex;
     data: Vertex;
-    items: any[];
     errors?: string[];
+    names: string[];
     "aria-labeledby"?: string;
 
     setValue(attribute: Vertex, data: any): void;
 }
 
-export function SelectInputField(props: SelectInputFieldProps) {
+export function AutocompleteField(props: AutoCompleteProps) {
     return (
         <div aria-labeledby={props["aria-labeledby"]}>
             <div ref={el => {
-                const instance = new SelectBox(el, {
-                    items: props.items,
-                    placeholder: "Select now...",
-                    dataSource: [...props.items, 'item4'],
-                    // disabled: true,
-                    // readOnly: true,
-                    onValueChanged: (e: any) => {
-                        props.setValue(props.meta, e.value);
+                const instance = new Autocomplete(el, {
+                    dataSource: props.names,
+                    onValueChanged: (e) => {
+                        props.setValue(props.meta, (e.value));
                     }
                 });
                 createEffect(() => instance.option("value", props.data.properties[props.meta.properties.id]));
@@ -34,6 +30,7 @@ export function SelectInputField(props: SelectInputFieldProps) {
                     }
                 });
             }} />
+
             <Show when={props.errors}>
                 <For each={Object.values(props.errors!)}>{(errorMsg: string) =>
                     <small>{errorMsg}</small>}</For>

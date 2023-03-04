@@ -1,9 +1,9 @@
+import TagBox, { Properties } from "devextreme/ui/tag_box";
 import { createEffect, For, Show } from "solid-js";
 import { Vertex } from "./Form";
-import SelectBox, { Properties } from "devextreme/ui/select_box";
 
 
-export interface SelectInputFieldProps extends Properties {
+export interface TagBoxFieldProps extends Properties {
     meta: Vertex;
     data: Vertex;
     items: any[];
@@ -13,18 +13,14 @@ export interface SelectInputFieldProps extends Properties {
     setValue(attribute: Vertex, data: any): void;
 }
 
-export function SelectInputField(props: SelectInputFieldProps) {
+export function TagBoxField(props: TagBoxFieldProps) {
     return (
         <div aria-labeledby={props["aria-labeledby"]}>
             <div ref={el => {
-                const instance = new SelectBox(el, {
+                const instance = new TagBox(el, {
                     items: props.items,
-                    placeholder: "Select now...",
-                    dataSource: [...props.items, 'item4'],
-                    // disabled: true,
-                    // readOnly: true,
-                    onValueChanged: (e: any) => {
-                        props.setValue(props.meta, e.value);
+                    onValueChanged: (e) => {
+                        props.setValue(props.meta, (e.value));
                     }
                 });
                 createEffect(() => instance.option("value", props.data.properties[props.meta.properties.id]));
@@ -34,6 +30,7 @@ export function SelectInputField(props: SelectInputFieldProps) {
                     }
                 });
             }} />
+
             <Show when={props.errors}>
                 <For each={Object.values(props.errors!)}>{(errorMsg: string) =>
                     <small>{errorMsg}</small>}</For>

@@ -5,7 +5,7 @@ import { Vertex } from "./Form";
 
 export interface NumberInputFieldProps extends Properties {
  meta: Vertex;
- vertex: Vertex;
+ data: Vertex;
  errors?: string[];
  "aria-labeledby"?: string;
 
@@ -21,7 +21,7 @@ export function NumberInputField(props: NumberInputFieldProps) {
        props.setValue(props.meta, e.value);
       }
      });
-     createEffect(() => instance.option("value", props.vertex.properties[props.meta.properties.id]));
+     createEffect(() => instance.option("value", props.data.properties[props.meta.properties.id]));
      createEffect(() => {
       for (const property in props.meta.properties.props as Properties) {
        instance.option(property, props.meta.properties.props[property]);
