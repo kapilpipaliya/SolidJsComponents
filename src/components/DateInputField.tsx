@@ -1,39 +1,37 @@
 import { createEffect, For, Show } from "solid-js";
 
-
 import DateBox, { Properties } from "devextreme/ui/date_box";
-import { Vertex } from "./Form";
+import { ComponentProps } from "./Form";
 
-export interface TextInputFieldProps extends Properties {
- meta: Vertex;
- data: Vertex;
- errors?: string[];
- "aria-labeledby"?: string;
-
- setValue(attribute: Vertex, data: any): void;
-}
-
-export function DateInputField(props: TextInputFieldProps) {
+export function DateInputField(props: ComponentProps) {
   return (
-   <div aria-labeledby={props["aria-labeledby"]}>
-    <div ref={el => {
-     const instance = new DateBox(el, {
-      onValueChanged: (e) => {
-       props.setValue(props.meta, (e.value));
-      }
-     });
-     createEffect(() => instance.option("value", props.data.properties[props.meta.properties.id]));
-     createEffect(() => {
-      for (const property in props.meta.properties.props as Properties) {
-       instance.option(property, props.meta.properties.props[property]);
-      }
-     });
-    }} />
+    <div aria-labeledby={props["aria-labeledby"]}>
+      <div
+        ref={(el) => {
+          const instance = new DateBox(el, {
+            onValueChanged: (e) => {
+              props.setValue(props.meta, e.value);
+            },
+          });
+          createEffect(() =>
+            instance.option(
+              "value",
+              props.data.properties[props.meta.properties.id]
+            )
+          );
+          createEffect(() => {
+            for (const property in props.meta.properties.props as Properties) {
+              instance.option(property, props.meta.properties.props[property]);
+            }
+          });
+        }}
+      />
 
-    <Show when={props.errors}>
-     <For each={Object.values(props.errors!)}>{(errorMsg: string) =>
-      <small>{errorMsg}</small>}</For>
-    </Show>
-   </div>
+      <Show when={props.errors}>
+        <For each={Object.values(props.errors!)}>
+          {(errorMsg: string) => <small>{errorMsg}</small>}
+        </For>
+      </Show>
+    </div>
   );
 }
