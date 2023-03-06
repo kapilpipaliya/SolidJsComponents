@@ -21,6 +21,13 @@ import { DropDownBoxField } from "./components/DropdownTry";
 import { TreeViewField } from "./components/TreeViewField";
 import { DropDownTry2 } from "./components/DropDownTry2";
 import { DropDownGrid } from "./components/DropDownGrid";
+import { ButtonGroupField } from "./components/ButtonGroup";
+import FieldSetComponent from "./components/FieldSetComponent";
+import { RadioGroupField } from "./components/RadioGroupField";
+import { RangeSelector } from "./components/RangeSelector";
+import { RangeSliderField } from "./components/RangeSlider";
+import { ResponsiveBoxField } from "./components/ResponsiveBox";
+import SortableKanban from "./components/SortableField";
 
 const App = () => {
   const items = ["item1", "item2", "item3"];
@@ -68,8 +75,8 @@ const App = () => {
       <TagBoxField meta={meta} data={data} setValue={setValue} items={items} /> */}
       {/* Drop down tree */}
       {/* <DropDownBoxTreeField meta={meta} data={data} setValue={setValue} items={customers} /> */}
-      Drop down try
-      <DropDownBoxField meta={meta} data={data} setValue={setValue} />
+      {/* Drop down try
+      <DropDownBoxField meta={meta} data={data} setValue={setValue} /> */}
       {/* Tree View Demo
       <TreeViewField
         meta={meta}
@@ -79,13 +86,35 @@ const App = () => {
       /> */}
       {/* DropDown try 2
       <DropDownTry2 meta={meta} data={data} setValue={setValue} /> */}
-      Drop down grid
+      {/* Drop down grid
       <DropDownGrid
         meta={meta}
         data={data}
         setValue={setValue}
         items={customers}
-      />
+      /> */}
+      Button Group
+      <ButtonGroupField meta={meta} data={data} setValue={setValue} />
+      <br />
+      Field Form Set
+      <FieldSetComponent meta={meta} data={data} setValue={setValue} />
+      <br />
+      Radio Group Field
+      <RadioGroupField meta={meta} data={data} setValue={setValue} />
+      <br />
+      Range Selector
+      <RangeSelector meta={meta} data={data} setValue={setValue} />
+      <br />
+      Range Slider
+      <RangeSliderField meta={meta} data={data} setValue={setValue} />
+
+      <br />
+      Responsive Box
+      <ResponsiveBoxField meta={meta} data={data} setValue={setValue} />
+
+      <br />
+      Sortable
+      <SortableKanban meta={meta} data={data} setValue={setValue} />
     </div>
   );
 };
