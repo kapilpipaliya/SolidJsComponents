@@ -24,6 +24,10 @@ import { DropDownGrid } from "./components/DropDownGrid";
 import { ButtonGroupField } from "./components/ButtonGroup";
 import FieldSetComponent from "./components/FieldSetComponent";
 import { RadioGroupField } from "./components/RadioGroupField";
+import { RangeSelector } from "./components/RangeSelector";
+import { RangeSliderField } from "./components/RangeSlider";
+import { ResponsiveBoxField } from "./components/ResponsiveBox";
+import SortableKanban from "./components/SortableField";
 
 const App = () => {
   const items = ["item1", "item2", "item3"];
@@ -98,6 +102,20 @@ const App = () => {
       <br />
       Radio Group Field
       <RadioGroupField meta={meta} data={data} setValue={setValue} />
+      <br />
+      Range Selector
+      <RangeSelector meta={meta} data={data} setValue={setValue} />
+      <br />
+      Range Slider
+      <RangeSliderField meta={meta} data={data} setValue={setValue} />
+
+      <br />
+      Responsive Box
+      <ResponsiveBoxField meta={meta} data={data} setValue={setValue} />
+
+      <br />
+      Sortable
+      <SortableKanban meta={meta} data={data} setValue={setValue} />
     </div>
   );
 };
