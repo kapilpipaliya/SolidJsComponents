@@ -28,24 +28,44 @@ import { RangeSelector } from "./components/RangeSelector";
 import { RangeSliderField } from "./components/RangeSlider";
 import { ResponsiveBoxField } from "./components/ResponsiveBox";
 import SortableKanban from "./components/SortableField";
+import { ValidationTextInputField } from "./components/ValidationTextBox";
+import { ValidationBooleanInputField } from "./components/ValidationBooleanField";
 
 const App = () => {
   const items = ["item1", "item2", "item3"];
   const meta = newVertex(0, ["Meta"], {
     id: "meta1",
-    props: { enableThreeStateBehavior: false },
+    props: { enableThreeStateBehavior: false, validationRules: [{ type: "required", message: "Email is required"}, { type: "email", message: "Email is invalid"}] },
+    // props: { enableThreeStateBehavior: false, validationRules: ['required', 'email'] },
   });
   const data = newVertex(0, ["Vertex"], { id: "vertex1" });
   const setValue = (attribute: Vertex, data: any) => {
     console.log(attribute, data);
   };
-
+  const meta2 = newVertex(0, ["Meta"], {
+    id: "meta2",
+    props: { mode: 'password', validationRules: [{type: 'required'}]},
+  });
+  const meta3 = newVertex(0, ["Meta"], {
+    id: "meta3",
+    props: { validationRules: ['required']},
+  });
+  const data3 = newVertex(0, ["Vertex"], { meta3: false });
   return (
     <div>
-      {/* <TextInputField meta={meta} data={data} setValue={setValue} />
+      <TextInputField meta={meta} data={data} setValue={setValue} />
+
+      Validation Text Input
+      <ValidationTextInputField meta={meta} data={data} setValue={setValue} />
+
+      Validation Text Input Password
+      <ValidationTextInputField meta={meta2} data={data} setValue={setValue} />
 
       Boolean:
       <BooleanInputField meta={meta} data={data} setValue={setValue} />
+
+      Validation Boolean:
+      <ValidationBooleanInputField meta={meta3} data={data3} setValue={setValue} />
 
       Numerical
       <NumberInputField meta={meta} data={data} setValue={setValue} />
@@ -72,27 +92,27 @@ const App = () => {
       <CalendarField meta={meta} data={data} setValue={setValue} />
 
       Tag Box
-      <TagBoxField meta={meta} data={data} setValue={setValue} items={items} /> */}
+      <TagBoxField meta={meta} data={data} setValue={setValue} items={items} />
       {/* Drop down tree */}
-      {/* <DropDownBoxTreeField meta={meta} data={data} setValue={setValue} items={customers} /> */}
-      {/* Drop down try
-      <DropDownBoxField meta={meta} data={data} setValue={setValue} /> */}
-      {/* Tree View Demo
+      <DropDownBoxTreeField meta={meta} data={data} setValue={setValue} items={customers} />
+      Drop down try
+      <DropDownBoxField meta={meta} data={data} setValue={setValue} />
+      Tree View Demo
       <TreeViewField
         meta={meta}
         data={data}
         setValue={setValue}
         items={employees}
-      /> */}
-      {/* DropDown try 2
-      <DropDownTry2 meta={meta} data={data} setValue={setValue} /> */}
-      {/* Drop down grid
+      />
+      DropDown try 2
+      <DropDownTry2 meta={meta} data={data} setValue={setValue} />
+      Drop down grid
       <DropDownGrid
         meta={meta}
         data={data}
         setValue={setValue}
         items={customers}
-      /> */}
+      />
       Button Group
       <ButtonGroupField meta={meta} data={data} setValue={setValue} />
       <br />
