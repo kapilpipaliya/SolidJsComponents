@@ -30,6 +30,13 @@ import { ResponsiveBoxField } from "./components/ResponsiveBox";
 import SortableKanban from "./components/SortableField";
 import { ValidationTextInputField } from "./components/ValidationTextBox";
 import { ValidationBooleanInputField } from "./components/ValidationBooleanField";
+import {Accordion, AccordionComponent, AccordionField} from "./components/Accordion";
+import ActionSheet from "devextreme/ui/action_sheet";
+import {ActionSheetComponent} from "./components/ActionSheet";
+import {BarGaugeComponent} from "./components/BarGauge";
+import {BoxComponent} from "./components/Box";
+import {BulletComponent} from "./components/Bullet";
+import {ButtonComponent} from "./components/Button";
 
 const App = () => {
   const items = ["item1", "item2", "item3"];
@@ -53,7 +60,7 @@ const App = () => {
   const data3 = newVertex(0, ["Vertex"], { meta3: false });
   return (
     <div>
-      <TextInputField meta={meta} data={data} setValue={setValue} />
+      {/* <TextInputField meta={meta} data={data} setValue={setValue} />
 
       Validation Text Input
       <ValidationTextInputField meta={meta} data={data} setValue={setValue} />
@@ -93,7 +100,7 @@ const App = () => {
 
       Tag Box
       <TagBoxField meta={meta} data={data} setValue={setValue} items={items} />
-      {/* Drop down tree */}
+      Drop down tree
       <DropDownBoxTreeField meta={meta} data={data} setValue={setValue} items={customers} />
       Drop down try
       <DropDownBoxField meta={meta} data={data} setValue={setValue} />
@@ -135,7 +142,32 @@ const App = () => {
 
       <br />
       Sortable
-      <SortableKanban meta={meta} data={data} setValue={setValue} />
+      <SortableKanban meta={meta} data={data} setValue={setValue} /> */}
+
+      <br />
+      Accordion
+      <AccordionComponent />
+
+      <br/>
+      Action Sheet
+      <br/>
+      <ActionSheetComponent />
+
+      <br/>
+      Bar Gauge
+      <BarGaugeComponent />
+
+      <br/>
+      Box
+      <BoxComponent />
+
+      <br/>
+      Bullet
+      <BulletComponent />
+
+      <br/>
+      Button
+      <ButtonComponent />
     </div>
   );
 };
