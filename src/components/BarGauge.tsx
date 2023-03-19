@@ -47,7 +47,7 @@ export function BarGaugeField(props: ComponentProps) {
           });
           createEffect(() =>
             instance.option(
-              "value",
+              "values",
               props.data.properties[props.meta.properties.id]
             )
           );

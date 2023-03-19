@@ -29,7 +29,7 @@ export function ButtonField(props: ComponentProps) {
           });
           createEffect(() =>
             instance.option(
-              "value",
+              "text",
               props.data.properties[props.meta.properties.id]
             )
           );

@@ -49,7 +49,7 @@ export function ActionSheetField(props: ComponentProps) {
           });
           createEffect(() =>
             instance.option(
-              "value",
+              "dataSource",
               props.data.properties[props.meta.properties.id]
             )
           );
