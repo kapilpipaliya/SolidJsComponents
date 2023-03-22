@@ -104,7 +104,7 @@ export default function SortableKanban(props: ComponentProps) {
   }
 
   return (
-    <div aria-labeledby={props["aria-labeledby"]}>
+    <div aria-labelledby={props["aria-labeledby"]}>
       <div
         id="sortable1"
         ref={(el) => {

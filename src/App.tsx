@@ -37,6 +37,15 @@ import {BarGaugeComponent} from "./components/BarGauge";
 import {BoxComponent} from "./components/Box";
 import {BulletComponent} from "./components/Bullet";
 import {ButtonComponent} from "./components/Button";
+import {ChartComponent} from "./components/Chart";
+import {CircularGaugeComponent} from "./components/CircularGauge";
+import {ContextMenuComponent} from "./components/ContextMenu";
+import {DropDownButtonComponent} from "./components/DropdownButton";
+import {FileUploaderComponent} from "./components/FileUploader";
+import {LinearGaugeComponent} from "./components/LinearGauge";
+import {ListComponent} from "./components/List";
+import {HTMLEditorComponent} from "./components/HTMLEditor";
+import {LoadIndicatorComponent} from "./components/LoadIndicator";
 
 const App = () => {
   const items = ["item1", "item2", "item3"];
@@ -60,7 +69,7 @@ const App = () => {
   const data3 = newVertex(0, ["Vertex"], { meta3: false });
   return (
     <div>
-      {/* <TextInputField meta={meta} data={data} setValue={setValue} />
+      <TextInputField meta={meta} data={data} setValue={setValue} />
 
       Validation Text Input
       <ValidationTextInputField meta={meta} data={data} setValue={setValue} />
@@ -100,8 +109,8 @@ const App = () => {
 
       Tag Box
       <TagBoxField meta={meta} data={data} setValue={setValue} items={items} />
-      Drop down tree
-      <DropDownBoxTreeField meta={meta} data={data} setValue={setValue} items={customers} />
+      {/*Drop down tree*/}
+      {/*<DropDownBoxTreeField meta={meta} data={data} setValue={setValue} items={customers} />*/}
       Drop down try
       <DropDownBoxField meta={meta} data={data} setValue={setValue} />
       Tree View Demo
@@ -142,7 +151,7 @@ const App = () => {
 
       <br />
       Sortable
-      <SortableKanban meta={meta} data={data} setValue={setValue} /> */}
+      <SortableKanban meta={meta} data={data} setValue={setValue} />
 
       <br />
       Accordion
@@ -168,6 +177,33 @@ const App = () => {
       <br/>
       Button
       <ButtonComponent />
+
+      Chart
+      <ChartComponent />
+
+      Circular Gauge
+      <CircularGaugeComponent />
+
+      Right click on ContextMenu
+      <ContextMenuComponent />
+
+      Dropdown Button
+      <DropDownButtonComponent />
+
+      File Uploader
+      <FileUploaderComponent />
+
+      Linear Gauge
+      <LinearGaugeComponent />
+
+        List
+        <ListComponent />
+
+        HTML Editor
+        <HTMLEditorComponent />
+
+      Load Indicator
+      <LoadIndicatorComponent />
     </div>
   );
 };

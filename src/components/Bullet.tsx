@@ -18,7 +18,7 @@ export function BulletComponent() {
 }
 export function BulletField(props: ComponentProps) {
   return (
-    <div aria-labeledby={props["aria-labeledby"]}>
+    <div aria-labelledby={props["aria-labeledby"]}>
       <div
         ref={(el) => {
           const instance = new Bullet(el, {

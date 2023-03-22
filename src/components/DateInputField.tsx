@@ -5,7 +5,7 @@ import { ComponentProps } from "./Form";
 
 export function DateInputField(props: ComponentProps) {
   return (
-    <div aria-labeledby={props["aria-labeledby"]}>
+    <div aria-labelledby={props["aria-labeledby"]}>
       <div
         ref={(el) => {
           const instance = new DateBox(el, {

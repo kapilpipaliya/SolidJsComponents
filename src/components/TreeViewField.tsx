@@ -16,7 +16,7 @@ export function TreeViewField(props: ComponentProps) {
   };
 
   return (
-    <div aria-labeledby={props["aria-labeledby"]}>
+    <div aria-labelledby={props["aria-labeledby"]}>
       <h4>Employees</h4>
       <div
         ref={(el) => {

@@ -1,35 +1,58 @@
 import {createEffect, For, Show} from "solid-js";
 import {ComponentProps, Vertex} from "./Form";
-import Button, {Properties} from "devextreme/ui/button";
+import ContextMenu, {Properties} from "devextreme/ui/context_menu";
 import {newVertex} from "./utils";
 
-export function ButtonComponent() {
+const contextMenuData = [
+  {
+    "text": "Hide"
+  },
+  {
+    "text": "Delete"
+  },
+  {
+    "text": "Clipboard",
+    "items": [
+      {
+        "text": "Copy"
+      },
+      {
+        "text": "Clear"
+      },
+      {
+        "text": "Paste"
+      }
+    ]
+  }
+];
+export function ContextMenuComponent() {
   const meta = newVertex(0, ["Meta"], {
     id: "meta",
-    props: { stylingMode: "contained", width: "120", type: "success" },
+    props: { },
   });
 
-  const data = newVertex(0, ["Vertex"], { meta: 'Button' });
+  const data = newVertex(0, ["Vertex"], { meta: contextMenuData });
   const setValue = (attribute: Vertex, data: any) => {
     console.log(attribute, data);
   };
 
-  return <ButtonField meta={meta} data={data} setValue={setValue} />
+  return <ContextMenuField meta={meta} data={data} setValue={setValue} />
 }
-export function ButtonField(props: ComponentProps) {
+export function ContextMenuField(props: ComponentProps) {
   return (
     <div aria-labelledby={props["aria-labeledby"]}>
       <div
         ref={(el) => {
-          const instance = new Button(el, {
-            text: props.data.properties[props.meta.properties.id],
-            onClick: () => {
-              props.setValue(props.meta, "Click");
+          const instance = new ContextMenu(el, {
+            dataSource: props.data.properties[props.meta.properties.id],
+            visible: true,
+            onItemClick: (e: any) => {
+              props.setValue(props.meta, e.itemData.text);
             }
           });
           createEffect(() =>
             instance.option(
-              "text",
+              "dataSource",
               props.data.properties[props.meta.properties.id]
             )
           );

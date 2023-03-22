@@ -9,7 +9,7 @@ import { alignments, fontStyles } from "../data/alignments";
 
 export function ButtonGroupField(props: ComponentProps) {
   return (
-    <div aria-labeledby={props["aria-labeledby"]}>
+    <div aria-labelledby={props["aria-labeledby"]}>
       <div
         style={{
           "margin-right": "10px",

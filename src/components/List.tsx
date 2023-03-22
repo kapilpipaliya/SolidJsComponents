@@ -1,50 +1,47 @@
-import {createEffect, createSignal, For, Show} from "solid-js";
+import {createEffect, For, Show} from "solid-js";
 import {ComponentProps, Vertex} from "./Form";
-import ActionSheet, {Properties} from "devextreme/ui/action_sheet";
+import List, {Properties} from "devextreme/ui/list";
 import {newVertex} from "./utils";
 
-const actionSheetItems = [
-  { text: 'Call' },
-  { text: 'Send message' },
-  { text: 'Edit' },
-  { text: 'Delete' },
-];
-export function ActionSheetComponent() {
-  const [buttonClicked, setButtonClicked] = createSignal(false);
+const listData = [
+  "Prepare 2013 Financial",
+  "Prepare 3013 Marketing Plan",
+  "Update Personnel Files",
+  "Review Health Insurance Options Under the Affordable Care Act",
+  "Choose between PPO and HMO Health Plan",
+  "Google AdWords Strategy",
+  "New Brochures",
+  "2013 Brochure Designs",
+  "Brochure Design Review",
+  "Website Re-Design Plan",
+  "Rollout of New Website and Marketing Brochures",
+  "Update Sales Strategy Documents",
+  "Create 2012 Sales Report",
+  "Direct vs Online Sales Comparison Report"
+]
+
+export function ListComponent() {
   const meta = newVertex(0, ["Meta"], {
     id: "meta",
-    props: { visible: true },
+    props: { },
   });
 
-  const data = newVertex(0, ["Vertex"], { meta: actionSheetItems });
+  const data = newVertex(0, ["Vertex"], { meta: listData });
   const setValue = (attribute: Vertex, data: any) => {
     console.log(attribute, data);
   };
 
-  return (
-    <>
-      <button onClick={() => {
-        setButtonClicked(!buttonClicked())
-        console.log(buttonClicked())
-      } }>Show Action Sheet</button>
-      {buttonClicked() && <ActionSheetField meta={meta} data={data} setValue={setValue} />}
-
-    </>
-  )
+  return <ListField meta={meta} data={data} setValue={setValue} />
 }
-export function ActionSheetField(props: ComponentProps) {
+export function ListField(props: ComponentProps) {
   return (
     <div aria-labelledby={props["aria-labeledby"]}>
       <div
         ref={(el) => {
-          const instance = new ActionSheet(el, {
+          const instance = new List(el, {
             dataSource: props.data.properties[props.meta.properties.id],
-            title: "Choose action",
-            onCancelClick: () => {
-              props.setValue(props.meta, "Cancel");
-            },
             onItemClick: (e: any) => {
-              props.setValue(props.meta, e.itemData.text);
+              props.setValue(props.meta, e.itemData);
             }
           });
           createEffect(() =>

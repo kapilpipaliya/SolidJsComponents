@@ -18,7 +18,7 @@ export function BarGaugeComponent() {
 }
 export function BarGaugeField(props: ComponentProps) {
   return (
-    <div aria-labeledby={props["aria-labeledby"]}>
+    <div aria-labelledby={props["aria-labeledby"]}>
       <div
         ref={(el) => {
           const instance = new BarGauge(el, {

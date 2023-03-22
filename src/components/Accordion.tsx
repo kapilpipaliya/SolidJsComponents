@@ -2,6 +2,7 @@ import {createEffect, For, Show} from "solid-js";
 import {ComponentProps, Vertex} from "./Form";
 import Accordion, {Properties} from "devextreme/ui/accordion";
 import {newVertex} from "./utils";
+// @ts-ignore
 import {accordionItems} from "../data/accordionItems";
 
 export function AccordionComponent() {
@@ -19,7 +20,7 @@ export function AccordionComponent() {
 }
 export function AccordionField(props: ComponentProps) {
   return (
-    <div aria-labeledby={props["aria-labeledby"]}>
+    <div aria-labelledby={props["aria-labeledby"]}>
       <div
         ref={(el) => {
           const instance = new Accordion(el, {
