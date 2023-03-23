@@ -46,6 +46,17 @@ import {LinearGaugeComponent} from "./components/LinearGauge";
 import {ListComponent} from "./components/List";
 import {HTMLEditorComponent} from "./components/HTMLEditor";
 import {LoadIndicatorComponent} from "./components/LoadIndicator";
+import {LoadPanelComponent} from "./components/LoadPanel";
+import {LookupComponent} from "./components/Lookup";
+import {MapComponent} from "./components/Map";
+import {MenuComponent} from "./components/Menu";
+import {MultiViewComponent} from "./components/MultiView";
+import {PieChartComponent} from "./components/PieChart";
+import {PivotGridComponent} from "./components/PivotGrid";
+import {PivotGridFieldChooserComponent} from "./components/PivotGridFieldChooser";
+import {PolarChartComponent} from "./components/PolarChart";
+import {PopOverComponent} from "./components/PopOver";
+import {PopupComponent} from "./components/Popup";
 
 const App = () => {
   const items = ["item1", "item2", "item3"];
@@ -204,6 +215,36 @@ const App = () => {
 
       Load Indicator
       <LoadIndicatorComponent />
+
+      Load Panel
+      <LoadPanelComponent />
+
+      Lookup
+      <LookupComponent />
+
+      Map
+      <MapComponent />
+
+      Menu
+      <MenuComponent />
+
+      MultiView
+      <MultiViewComponent />
+
+      Pie Chart
+      <PieChartComponent />
+
+      Pivot Grid
+      <PivotGridComponent />
+      
+      Polar Chart
+      <PolarChartComponent />
+
+      Pop Over
+      <PopOverComponent />
+
+      Pop up
+      <PopupComponent />
     </div>
   );
 };
