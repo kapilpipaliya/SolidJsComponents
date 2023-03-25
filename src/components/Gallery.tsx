@@ -1,61 +1,44 @@
 import {createEffect, For, Show} from "solid-js";
 import {ComponentProps, Vertex} from "./Form";
-import Menu, {Properties} from "devextreme/ui/menu";
+import Gallery, {Properties} from "devextreme/ui/gallery";
 import {newVertex} from "./utils";
 
-const menuData = [
-  {
-    "text": "Video Players"
-  },
-  {
-    "text": "Televisions"
-  },
-  {
-    "text": "Monitors",
-    "items": [
-      {
-        "text": "DesktopLCD 19"
-      },
-      {
-        "text": "DesktopLCD 21"
-      },
-      {
-        "text": "DesktopLED 21"
-      }
-    ]
-  }
-];
+const galleryData = [
+  "https://js.devexpress.com/Content/images/doc/22_2/PhoneJS/person2.png",
+  "https://js.devexpress.com/Content/images/doc/22_2/PhoneJS/person1.png",
+  "https://js.devexpress.com/Content/images/doc/22_2/PhoneJS/person3.png",
+  "https://js.devexpress.com/Content/images/doc/22_2/PhoneJS/person4.png"
+]
 
-export function MenuComponent() {
+export function GalleryComponent() {
   const meta = newVertex(0, ["Meta"], {
     id: "meta",
     props: { },
   });
 
-  const data = newVertex(0, ["Vertex"], { meta: menuData });
+  const data = newVertex(0, ["Vertex"], { meta: galleryData });
   const setValue = (attribute: Vertex, data: any) => {
     console.log(attribute, data);
   };
 
-  return <MenuField meta={meta} data={data} setValue={setValue} />
+  return <GalleryField meta={meta} data={data} setValue={setValue} />
 }
-export function MenuField(props: ComponentProps) {
+export function GalleryField(props: ComponentProps) {
   return (
     <div aria-labelledby={props["aria-labeledby"]}>
       <div
         ref={(el) => {
-          const instance = new Menu(el, {
-
-            onItemClick: (e: any) => {
-              props.setValue(props.meta, e.itemData);
-            }
+          const instance = new Gallery(el, {
+            height: 400,
           });
+
           createEffect(() =>
             instance.option(
               "dataSource",
               props.data.properties[props.meta.properties.id]
             )
           );
+
           createEffect(() => {
             for (const property in props.meta.properties.props as Properties) {
               instance.option(property, props.meta.properties.props[property]);

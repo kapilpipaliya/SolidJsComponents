@@ -38,7 +38,7 @@ export function ActionSheetField(props: ComponentProps) {
       <div
         ref={(el) => {
           const instance = new ActionSheet(el, {
-            dataSource: props.data.properties[props.meta.properties.id],
+
             title: "Choose action",
             onCancelClick: () => {
               props.setValue(props.meta, "Cancel");

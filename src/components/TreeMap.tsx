@@ -1,61 +1,72 @@
 import {createEffect, For, Show} from "solid-js";
 import {ComponentProps, Vertex} from "./Form";
-import Menu, {Properties} from "devextreme/ui/menu";
+import TreeMap, {Properties} from "devextreme/viz/tree_map";
 import {newVertex} from "./utils";
 
-const menuData = [
+const treeMapData = [
   {
-    "text": "Video Players"
-  },
-  {
-    "text": "Televisions"
-  },
-  {
-    "text": "Monitors",
+    "name": "Fruits",
     "items": [
       {
-        "text": "DesktopLCD 19"
+        "name": "Apples",
+        "value": 4
       },
       {
-        "text": "DesktopLCD 21"
+        "name": "Oranges",
+        "value": 10
       },
       {
-        "text": "DesktopLED 21"
+        "name": "Lemons",
+        "value": 6
+      }
+    ]
+  },
+  {
+    "name": "Vegetables",
+    "items": [
+      {
+        "name": "Cucumbers",
+        "value": 4
+      },
+      {
+        "name": "Tomatoes",
+        "value": 8
+      },
+      {
+        "name": "Turnips",
+        "value": 7
       }
     ]
   }
-];
+]
 
-export function MenuComponent() {
+export function TreeMapComponent() {
   const meta = newVertex(0, ["Meta"], {
     id: "meta",
     props: { },
   });
 
-  const data = newVertex(0, ["Vertex"], { meta: menuData });
+  const data = newVertex(0, ["Vertex"], { meta: treeMapData });
   const setValue = (attribute: Vertex, data: any) => {
     console.log(attribute, data);
   };
 
-  return <MenuField meta={meta} data={data} setValue={setValue} />
+  return <TreeMapField meta={meta} data={data} setValue={setValue} />
 }
-export function MenuField(props: ComponentProps) {
+export function TreeMapField(props: ComponentProps) {
   return (
     <div aria-labelledby={props["aria-labeledby"]}>
       <div
         ref={(el) => {
-          const instance = new Menu(el, {
+          const instance = new TreeMap(el, {});
 
-            onItemClick: (e: any) => {
-              props.setValue(props.meta, e.itemData);
-            }
-          });
           createEffect(() =>
             instance.option(
               "dataSource",
               props.data.properties[props.meta.properties.id]
             )
           );
+
           createEffect(() => {
             for (const property in props.meta.properties.props as Properties) {
               instance.option(property, props.meta.properties.props[property]);

@@ -65,7 +65,7 @@ export function MultiViewField(props: ComponentProps) {
       <div
         ref={(el) => {
           const instance = new MultiView(el, {
-            dataSource: props.data.properties[props.meta.properties.id],
+
             onItemClick: (e: any) => {
               props.setValue(props.meta, e.itemData);
             },

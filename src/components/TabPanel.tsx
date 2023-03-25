@@ -1,61 +1,55 @@
 import {createEffect, For, Show} from "solid-js";
 import {ComponentProps, Vertex} from "./Form";
-import Menu, {Properties} from "devextreme/ui/menu";
+import TabPanel, {Properties} from "devextreme/ui/tab_panel";
 import {newVertex} from "./utils";
 
-const menuData = [
+const tabPanelData = [
   {
-    "text": "Video Players"
+    "title": "Info",
+    "text": "John Smith, 1986"
   },
   {
-    "text": "Televisions"
+    "title": "Contacts",
+    "text": "phone: (555)555-5555, email: John.Smith@example.com"
   },
   {
-    "text": "Monitors",
-    "items": [
-      {
-        "text": "DesktopLCD 19"
-      },
-      {
-        "text": "DesktopLCD 21"
-      },
-      {
-        "text": "DesktopLED 21"
-      }
-    ]
+    "title": "Address",
+    "text": "CA San Francisco Stanford Ave"
   }
 ];
 
-export function MenuComponent() {
+export function TabPanelComponent() {
   const meta = newVertex(0, ["Meta"], {
     id: "meta",
     props: { },
   });
 
-  const data = newVertex(0, ["Vertex"], { meta: menuData });
+  const data = newVertex(0, ["Vertex"], { meta: tabPanelData });
   const setValue = (attribute: Vertex, data: any) => {
     console.log(attribute, data);
   };
 
-  return <MenuField meta={meta} data={data} setValue={setValue} />
+  return <TabPanelField meta={meta} data={data} setValue={setValue} />
 }
-export function MenuField(props: ComponentProps) {
+export function TabPanelField(props: ComponentProps) {
   return (
     <div aria-labelledby={props["aria-labeledby"]}>
       <div
         ref={(el) => {
-          const instance = new Menu(el, {
-
-            onItemClick: (e: any) => {
-              props.setValue(props.meta, e.itemData);
-            }
+          const instance = new TabPanel(el, {
+            height: 260,
+            onSelectionChanged(e) {
+              props.setValue(props.meta, e.addedItems[0].text);
+            },
           });
+
           createEffect(() =>
             instance.option(
               "dataSource",
               props.data.properties[props.meta.properties.id]
             )
           );
+
           createEffect(() => {
             for (const property in props.meta.properties.props as Properties) {
               instance.option(property, props.meta.properties.props[property]);

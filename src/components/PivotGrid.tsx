@@ -53,7 +53,7 @@ export function PivotGridField(props: ComponentProps) {
       <div
         ref={(el) => {
           const instance = new PivotGrid(el, {
-            dataSource: props.data.properties[props.meta.properties.id],
+
             fieldChooser: {
               width: 400
             },

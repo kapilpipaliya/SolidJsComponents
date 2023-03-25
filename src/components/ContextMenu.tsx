@@ -44,7 +44,7 @@ export function ContextMenuField(props: ComponentProps) {
       <div
         ref={(el) => {
           const instance = new ContextMenu(el, {
-            dataSource: props.data.properties[props.meta.properties.id],
+
             visible: true,
             onItemClick: (e: any) => {
               props.setValue(props.meta, e.itemData.text);

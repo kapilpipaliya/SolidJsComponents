@@ -28,7 +28,7 @@ export function AccordionField(props: ComponentProps) {
             collapsible: true,
             multiple: false,
             selectedItems: [props.data.properties[props.meta.properties.id][0]],
-            dataSource: props.data.properties[props.meta.properties.id],
+
             itemTitleTemplate: (itemData: any, itemIndex: number, itemElement: any) => {
               itemElement.innerHTML = `
                 ${itemData.CompanyName}
@@ -52,7 +52,7 @@ export function AccordionField(props: ComponentProps) {
           });
           createEffect(() =>
             instance.option(
-              "value",
+              "dataSource",
               props.data.properties[props.meta.properties.id]
             )
           );

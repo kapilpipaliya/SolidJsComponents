@@ -1,61 +1,69 @@
 import {createEffect, For, Show} from "solid-js";
 import {ComponentProps, Vertex} from "./Form";
-import Menu, {Properties} from "devextreme/ui/menu";
+import Funnel, {Properties} from "devextreme/viz/funnel";
 import {newVertex} from "./utils";
 
-const menuData = [
+const funnelData = [
   {
-    "text": "Video Players"
+    "action": "Visited the Website",
+    "users": 9152
   },
   {
-    "text": "Televisions"
+    "action": "Downloaded a Trial",
+    "users": 6879
   },
   {
-    "text": "Monitors",
-    "items": [
-      {
-        "text": "DesktopLCD 19"
-      },
-      {
-        "text": "DesktopLCD 21"
-      },
-      {
-        "text": "DesktopLED 21"
-      }
-    ]
+    "action": "Contacted Support",
+    "users": 5121
+  },
+  {
+    "action": "Subscribed",
+    "users": 2224
+  },
+  {
+    "action": "Renewed",
+    "users": 1670
   }
-];
+]
 
-export function MenuComponent() {
+export function FunnelComponent() {
   const meta = newVertex(0, ["Meta"], {
     id: "meta",
     props: { },
   });
 
-  const data = newVertex(0, ["Vertex"], { meta: menuData });
+  const data = newVertex(0, ["Vertex"], { meta: funnelData });
   const setValue = (attribute: Vertex, data: any) => {
     console.log(attribute, data);
   };
 
-  return <MenuField meta={meta} data={data} setValue={setValue} />
+  return <FunnelField meta={meta} data={data} setValue={setValue} />
 }
-export function MenuField(props: ComponentProps) {
+export function FunnelField(props: ComponentProps) {
   return (
     <div aria-labelledby={props["aria-labeledby"]}>
       <div
         ref={(el) => {
-          const instance = new Menu(el, {
-
-            onItemClick: (e: any) => {
-              props.setValue(props.meta, e.itemData);
-            }
+          const instance = new Funnel(el, {
+            argumentField: "action",
+            label: {
+              backgroundColor: "none",
+              customizeText: function(e) {
+                // @ts-ignore
+                return e.item.argument + '<br />' + e.item.value;
+                },
+              position: "inside"
+            },
+            valueField: "users"
           });
+
           createEffect(() =>
             instance.option(
               "dataSource",
               props.data.properties[props.meta.properties.id]
             )
           );
+
           createEffect(() => {
             for (const property in props.meta.properties.props as Properties) {
               instance.option(property, props.meta.properties.props[property]);

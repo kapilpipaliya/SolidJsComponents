@@ -1,78 +1,98 @@
 import {createEffect, For, Show} from "solid-js";
 import {ComponentProps, Vertex} from "./Form";
-import PieChart, {Properties} from "devextreme/viz/pie_chart";
+import Sankey, {Properties} from "devextreme/viz/sankey";
 import {newVertex} from "./utils";
 
-const pieChartData = [
+const sankeyData = [
   {
-    "arg": "Russia",
-    "val": 12
+    source: "Brazil",
+    target: "Portugal",
+    weight: 5
   },
   {
-    "arg": "Canada",
-    "val": 7
+    source: "Brazil",
+    target: "France",
+    weight: 1
   },
   {
-    "arg": "USA",
-    "val": 7
+    source: "Brazil",
+    target: "Spain",
+    weight: 1
   },
   {
-    "arg": "China",
-    "val": 7
+    source: "Brazil",
+    target: "England",
+    weight: 1
   },
   {
-    "arg": "Brazil",
-    "val": 6
+    source: "Canada",
+    target: "Portugal",
+    weight: 1
   },
   {
-    "arg": "Australia",
-    "val": 5
+    source: "Canada",
+    target: "France",
+    weight: 5
   },
   {
-    "arg": "India",
-    "val": 2
+    source: "Canada",
+    target: "England",
+    weight: 1
   },
   {
-    "arg": "Others",
-    "val": 55
+    source: "Mexico",
+    target: "Portugal",
+    weight: 1
+  },
+  {
+    source: "Mexico",
+    target: "France",
+    weight: 1
+  },
+  {
+    source: "Mexico",
+    target: "Spain",
+    weight: 5
+  },
+  {
+    source: "Mexico",
+    target: "England",
+    weight: 1
   }
 ]
 
-export function PieChartComponent() {
+export function SankeyComponent() {
   const meta = newVertex(0, ["Meta"], {
     id: "meta",
     props: { },
   });
 
-  const data = newVertex(0, ["Vertex"], { meta: pieChartData });
+  const data = newVertex(0, ["Vertex"], { meta: sankeyData });
   const setValue = (attribute: Vertex, data: any) => {
     console.log(attribute, data);
   };
 
-  return <PieChartField meta={meta} data={data} setValue={setValue} />
+  return <SankeyField meta={meta} data={data} setValue={setValue} />
 }
-export function PieChartField(props: ComponentProps) {
+export function SankeyField(props: ComponentProps) {
   return (
     <div aria-labelledby={props["aria-labeledby"]}>
       <div
         ref={(el) => {
-          const instance = new PieChart(el, {
+          const instance = new Sankey(el, {
 
-            legend: {
-              horizontalAlignment: "center",
-              verticalAlignment: "bottom"
-            },
-            series: {
-              argumentField: "arg",
-              valueField: "val"
+            link: {
+              colorMode: "gradient"
             }
           });
+
           createEffect(() =>
             instance.option(
               "dataSource",
               props.data.properties[props.meta.properties.id]
             )
           );
+
           createEffect(() => {
             for (const property in props.meta.properties.props as Properties) {
               instance.option(property, props.meta.properties.props[property]);

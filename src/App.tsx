@@ -57,6 +57,29 @@ import {PivotGridFieldChooserComponent} from "./components/PivotGridFieldChooser
 import {PolarChartComponent} from "./components/PolarChart";
 import {PopOverComponent} from "./components/PopOver";
 import {PopupComponent} from "./components/Popup";
+import {ProgressBarComponent} from "./components/ProgressBar";
+import {ScrollViewComponent} from "./components/ScrollView";
+import {SliderComponent} from "./components/Slider";
+import {SparkLineComponent} from "./components/SparkLine";
+import {TabPanelComponent} from "./components/TabPanel";
+import {TabsComponent} from "./components/Tabs";
+import {ToastComponent} from "./components/Toast";
+import {TooltipComponent} from "./components/Tooltip";
+import {TreeListComponent} from "./components/TreeList";
+import {TreeMapComponent} from "./components/TreeMap";
+import {VectorMapComponent} from "./components/VectorMap";
+import {DrawerComponent} from "./components/Drawer";
+import {DiagramComponent} from "./components/Diagram";
+import {FileManagerComponent} from "./components/FileManager";
+import {SankeyComponent} from "./components/Sankey";
+import {SpeedDialActionComponent} from "./components/SpeedDialAction";
+import {TileViewComponent} from "./components/TileView";
+import {SchedulerComponent} from "./components/Scheduler";
+import {FunnelComponent} from "./components/Funnel";
+import {GalleryComponent} from "./components/Gallery";
+import {DataGridComponent} from "./components/DataGrid";
+import {FilterBuilderComponent} from "./components/FilterBuilder";
+import {GanttComponent} from "./components/Gantt";
 
 const App = () => {
   const items = ["item1", "item2", "item3"];
@@ -131,8 +154,8 @@ const App = () => {
         setValue={setValue}
         items={employees}
       />
-      DropDown try 2
-      <DropDownTry2 meta={meta} data={data} setValue={setValue} />
+      {/*DropDown try 2*/}
+      {/*<DropDownTry2 meta={meta} data={data} setValue={setValue} />*/}
       Drop down grid
       <DropDownGrid
         meta={meta}
@@ -207,11 +230,11 @@ const App = () => {
       Linear Gauge
       <LinearGaugeComponent />
 
-        List
-        <ListComponent />
+      List
+      <ListComponent />
 
-        HTML Editor
-        <HTMLEditorComponent />
+      HTML Editor
+      <HTMLEditorComponent />
 
       Load Indicator
       <LoadIndicatorComponent />
@@ -236,7 +259,10 @@ const App = () => {
 
       Pivot Grid
       <PivotGridComponent />
-      
+
+      Pivot Grid Field Chooser
+      <PivotGridFieldChooserComponent />
+
       Polar Chart
       <PolarChartComponent />
 
@@ -244,7 +270,100 @@ const App = () => {
       <PopOverComponent />
 
       Pop up
-      <PopupComponent />
+      {/*<PopupComponent />*/}
+
+      <br/>
+      Progress Bar
+      <br/><br/>
+      <ProgressBarComponent />
+
+      <br/>
+      Scroll View
+      <ScrollViewComponent />
+
+      <br/>
+      Slider
+      <SliderComponent />
+
+      <br/>
+      Spark Line
+      <SparkLineComponent />
+
+      <br/>
+      Tab Panel
+      <TabPanelComponent />
+
+      <br/>
+      Tabs
+      <TabsComponent />
+
+      <br/>
+      Toast
+      {/*<ToastComponent />*/}
+
+      {/*<br/>*/}
+      {/*Tooltip*/}
+      {/*<TooltipComponent />*/}
+
+      <br/>
+      Tree List
+      <TreeListComponent />
+
+      <br/>
+      Tree Map
+      <TreeMapComponent />
+
+      <br/>
+      Vector Map
+      <VectorMapComponent />
+
+      <br/>
+      File Manager
+      <FileManagerComponent />
+
+      <br/>
+      Sankey
+      <SankeyComponent />
+
+      <br/>
+      Speed Dial Action
+      <SpeedDialActionComponent />
+
+      <br/>
+      TileView
+      <TileViewComponent />
+
+      <br/>
+      Scheduler
+      <SchedulerComponent />
+
+      <br/>
+      Funnel
+      <FunnelComponent />
+
+      <br/>
+      Gallery
+      <GalleryComponent />
+
+      <br/>
+      DataGrid
+      <DataGridComponent />
+
+      <br/>
+      Filter Buidler
+      <FilterBuilderComponent />
+
+      {/*<br/>*/}
+      {/*Gantt*/}
+      {/*<GanttComponent />*/}
+
+      {/*<br/>*/}
+      {/*Drawer*/}
+      {/*<DrawerComponent />*/}
+
+      {/*<br/>*/}
+      {/*Diagram*/}
+      {/*<DiagramComponent />*/}
     </div>
   );
 };

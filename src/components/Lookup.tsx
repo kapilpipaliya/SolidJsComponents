@@ -39,7 +39,7 @@ export function LookupField(props: ComponentProps) {
       <div
         ref={(el) => {
           const instance = new Lookup(el, {
-            dataSource: props.data.properties[props.meta.properties.id],
+
             onItemClick: (e: any) => {
               props.setValue(props.meta, e.itemData);
             }

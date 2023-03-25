@@ -44,7 +44,7 @@ export function ChartField(props: ComponentProps) {
       <div
         ref={(el) => {
           const instance = new Chart(el, {
-            dataSource: props.data.properties[props.meta.properties.id],
+
             series: {
               argumentField: 'day',
               valueField: 'oranges',

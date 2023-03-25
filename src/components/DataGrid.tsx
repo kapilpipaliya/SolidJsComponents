@@ -1,61 +1,68 @@
 import {createEffect, For, Show} from "solid-js";
 import {ComponentProps, Vertex} from "./Form";
-import Menu, {Properties} from "devextreme/ui/menu";
+import DataGrid, {Properties} from "devextreme/ui/data_grid";
 import {newVertex} from "./utils";
 
-const menuData = [
+const dataGridData = [
   {
-    "text": "Video Players"
+    "ID": 1,
+    "CompanyName": "Super Mart of the West",
+    "City": "Bentonville",
+    "State": "Arkansas"
   },
   {
-    "text": "Televisions"
+    "ID": 2,
+    "CompanyName": "Electronics Depot",
+    "City": "Atlanta",
+    "State": "Georgia"
   },
   {
-    "text": "Monitors",
-    "items": [
-      {
-        "text": "DesktopLCD 19"
-      },
-      {
-        "text": "DesktopLCD 21"
-      },
-      {
-        "text": "DesktopLED 21"
-      }
-    ]
+    "ID": 3,
+    "CompanyName": "K&S Music",
+    "City": "Minneapolis",
+    "State": "Minnesota"
+  },
+  {
+    "ID": 4,
+    "CompanyName": "Tom's Club",
+    "City": "Issaquah",
+    "State": "Washington"
+  },
+  {
+    "ID": 5,
+    "CompanyName": "E-Mart",
+    "City": "Hoffman Estates",
+    "State": "Illinois"
   }
-];
+]
 
-export function MenuComponent() {
+export function DataGridComponent() {
   const meta = newVertex(0, ["Meta"], {
     id: "meta",
     props: { },
   });
 
-  const data = newVertex(0, ["Vertex"], { meta: menuData });
+  const data = newVertex(0, ["Vertex"], { meta: dataGridData });
   const setValue = (attribute: Vertex, data: any) => {
     console.log(attribute, data);
   };
 
-  return <MenuField meta={meta} data={data} setValue={setValue} />
+  return <DataGridField meta={meta} data={data} setValue={setValue} />
 }
-export function MenuField(props: ComponentProps) {
+export function DataGridField(props: ComponentProps) {
   return (
     <div aria-labelledby={props["aria-labeledby"]}>
       <div
         ref={(el) => {
-          const instance = new Menu(el, {
+          const instance = new DataGrid(el, {});
 
-            onItemClick: (e: any) => {
-              props.setValue(props.meta, e.itemData);
-            }
-          });
           createEffect(() =>
             instance.option(
               "dataSource",
               props.data.properties[props.meta.properties.id]
             )
           );
+
           createEffect(() => {
             for (const property in props.meta.properties.props as Properties) {
               instance.option(property, props.meta.properties.props[property]);
