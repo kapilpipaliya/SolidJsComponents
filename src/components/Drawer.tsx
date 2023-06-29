@@ -1,4 +1,4 @@
-import {createEffect, For, JSXElement, Show} from "solid-js";
+import {createEffect, createSignal, For, JSXElement, on, onMount, Show} from "solid-js";
 import {ComponentProps, Vertex} from "./Form";
 import Drawer, {Properties} from "devextreme/ui/drawer";
 import {newVertex} from "./utils";
@@ -28,41 +28,39 @@ export function DrawerComponent() {
   return <DrawerField meta={meta} data={data} setValue={setValue}>{text}</DrawerField>
 }
 export function DrawerField(props: ComponentProps & { children: JSXElement }) {
+
+  const [isSideBarOpen, setSideBarOpen] = createSignal(false);
   return (
     <div aria-labelledby={props["aria-labeledby"]}>
+      <button onClick={() => setSideBarOpen(!isSideBarOpen())}>toggle</button>
       <div
         ref={(el) => {
-          const instance = new Drawer(el, {
-            opened: false,
-            height: 300,
-            closeOnOutsideClick: true,
-            // minSize: 100,
-            // maxSize: 200,
-            template: function (e) {
-                const listInstance = new List(e, {
+          onMount(() => {
+            const instance = new Drawer(el, {
+              height: 300,
+              closeOnOutsideClick: true,
+              revealMode: "expand",
+              maxSize: 200,
+              position: "right",
+              openedStateMode: "overlap",
+              template: function (e) {
+                new List(e, {
                   dataSource: props.data.properties[props.meta.properties.id],
                   hoverStateEnabled: false,
                   activeStateEnabled: false,
                   focusStateEnabled: false,
                   elementAttr: { class: 'dx-theme-accent-as-background-color' },
                 })
-              console.log('listInstance', listInstance, listInstance._$element[0])
-              const drawerContent = listInstance._$element[0]
-              drawerContent.setAttribute('style', 'width: 200px !important')
-              console.log('listInstance el', listInstance._$element[0], drawerContent)
-            }
-          });
+              }
+            });
+            createEffect(on(isSideBarOpen, _ => isSideBarOpen() ? instance.show() : instance.hide()));
 
-          createEffect(() => {
-            // console.log('instance', instance);
-            instance.show();
-          });
-
-          createEffect(() => {
-            for (const property in props.meta.properties.props as Properties) {
-              instance.option(property, props.meta.properties.props[property]);
-            }
-          });
+            createEffect(() => {
+              for (const property in props.meta.properties.props as Properties) {
+                instance.option(property, props.meta.properties.props[property]);
+              }
+            });
+          })
         }}
       >
         <div id="content" class="dx-theme-background-color">

@@ -357,9 +357,9 @@ const App = () => {
       {/*Gantt*/}
       {/*<GanttComponent />*/}
 
-      {/*<br/>*/}
-      {/*Drawer*/}
-      {/*<DrawerComponent />*/}
+      <br/>
+      Drawer
+      <DrawerComponent />
 
       {/*<br/>*/}
       {/*Diagram*/}

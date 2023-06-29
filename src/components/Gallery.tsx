@@ -30,6 +30,16 @@ export function GalleryField(props: ComponentProps) {
         ref={(el) => {
           const instance = new Gallery(el, {
             height: 400,
+            stretchImages: true,
+            // itemTemplate: (itemData, itemIndex, itemElement) => {
+            //   const div = document.createElement("div");
+            //   div.style.backgroundImage = `url(${itemData})`;
+            //   div.style.backgroundSize = "cover",
+            //   div.style.backgroundPosition = "center";
+            //   // div.style.width = "100%";
+            //   div.style.height = "100%";
+            //   itemElement.append(div);
+            // }
           });
 
           createEffect(() =>
