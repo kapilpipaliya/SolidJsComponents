@@ -87,10 +87,15 @@ import { GanttComponent } from "./components/Gantt";
 
 // import "./assets/styles/dx.generic.custom-scheme.css";
 import "./assets/styles/dx.material.custom-scheme.css";
+import "./assets/styles/dx.material.orange-light.css";
+
 import { ThemeForm } from "./components/ThemeForm";
 import { ThemeButton } from "./components/ThemeButton";
+import { createSignal } from "solid-js";
+import { DropDownThemeField, ThemeSwitcherDropdown, dropdownThemeData } from "./components/ThemeSwitcherDropdown";
 
 const App = () => {
+  const [theme, setTheme] = createSignal("");
   const items = ["item1", "item2", "item3"];
   const meta = newVertex(0, ["Meta"], {
     id: "meta1",
@@ -116,8 +121,28 @@ const App = () => {
     props: { validationRules: ["required"] },
   });
   const data3 = newVertex(0, ["Vertex"], { meta3: false });
+
+  const metatheme = newVertex(0, ["Meta"], {
+    id: "metatheme",
+    props: {  },
+  });
+
+  const dataTheme = newVertex(0, ["Vertex"], { metatheme: dropdownThemeData });
+
+  const setValueTheme = (attribute: Vertex, data: any) => {
+    console.log(attribute, data);
+    setTheme(data.theme);
+  };
+
   return (
-    <div>
+    <div class={theme()}>
+      {/* theme dropdown */}
+      <DropDownThemeField
+        meta={metatheme}
+        data={dataTheme}
+        setValue={setValueTheme}
+      />
+
       <TextInputField meta={meta} data={data} setValue={setValue} />
       Validation Text Input
       <ValidationTextInputField meta={meta} data={data} setValue={setValue} />
