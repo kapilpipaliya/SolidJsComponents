@@ -92,7 +92,11 @@ import "./assets/styles/dx.material.orange-light.css";
 import { ThemeForm } from "./components/ThemeForm";
 import { ThemeButton } from "./components/ThemeButton";
 import { createSignal } from "solid-js";
-import { DropDownThemeField, ThemeSwitcherDropdown, dropdownThemeData } from "./components/ThemeSwitcherDropdown";
+import {
+  DropDownThemeField,
+  ThemeSwitcherDropdown,
+  dropdownThemeData,
+} from "./components/ThemeSwitcherDropdown";
 
 const App = () => {
   const [theme, setTheme] = createSignal("");
@@ -124,7 +128,7 @@ const App = () => {
 
   const metatheme = newVertex(0, ["Meta"], {
     id: "metatheme",
-    props: {  },
+    props: {},
   });
 
   const dataTheme = newVertex(0, ["Vertex"], { metatheme: dropdownThemeData });
@@ -142,7 +146,6 @@ const App = () => {
         data={dataTheme}
         setValue={setValueTheme}
       />
-
       <TextInputField meta={meta} data={data} setValue={setValue} />
       Validation Text Input
       <ValidationTextInputField meta={meta} data={data} setValue={setValue} />
@@ -251,8 +254,6 @@ const App = () => {
       <ContextMenuComponent />
       Dropdown Button
       <DropDownButtonComponent />
-      File Uploader
-      <FileUploaderComponent />
       Linear Gauge
       <LinearGaugeComponent />
       List
@@ -360,6 +361,10 @@ const App = () => {
       <br />
       theme button
       <ThemeButton />
+      <br />
+      <br />
+      File Uploader
+      <FileUploaderComponent />
     </div>
   );
 };
