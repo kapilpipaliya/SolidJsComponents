@@ -97,6 +97,7 @@ import {
   ThemeSwitcherDropdown,
   dropdownThemeData,
 } from "./components/ThemeSwitcherDropdown";
+import { FormBuilder } from "./components/FormBuilder";
 
 const App = () => {
   const [theme, setTheme] = createSignal("");
@@ -365,6 +366,9 @@ const App = () => {
       <br />
       File Uploader
       <FileUploaderComponent />
+      <br />
+      formbuilder
+      <FormBuilder />
     </div>
   );
 };
