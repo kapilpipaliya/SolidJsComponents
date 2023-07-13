@@ -1,6 +1,6 @@
-import { createEffect, createSignal, For, Show } from "solid-js";
-import { ComponentProps, Vertex } from "./Form";
-import Tabs, { Properties } from "devextreme/ui/tabs";
+import { createSignal, For } from "solid-js";
+import { Vertex } from "./Form";
+import Tabs from "devextreme/ui/tabs";
 import { newVertex } from "./utils";
 
 export function FormBuilder() {
@@ -100,7 +100,6 @@ export function FormBuilder() {
         style={{
           display: "grid",
           "grid-template-columns": "repeat(1, 1fr)",
-          // "grid-gap": "20px",
         }}
       >
         <label
@@ -112,16 +111,12 @@ export function FormBuilder() {
             "vertical-align": "middle",
             "padding-right": "10px",
             "line-height": "1.35715",
-            // display: "table-cell",
-            // width: "30%",
           }}
         >
           {item.replace(/([A-Z][a-z])/g, " $1").replace(/(\d)/g, " $1")}
         </label>
         <input
           style={{
-            // display: "table-cell",
-            // width: "50%",
             "vertical-align": "top",
             "line-height": "1.35715",
             "border-radius": "4px",
@@ -129,7 +124,6 @@ export function FormBuilder() {
             "outline-color": "#337ab7",
             margin: 0,
             padding: "7px 9px 8px",
-            // "min-height": "34px",
             "font-size": "14px",
             color: "#333",
             "margin-bottom": "10px",
@@ -194,11 +188,18 @@ export function FormBuilder() {
                       <div
                         ref={(el) => {
                           const instance = new Tabs(el, {
-                            dataSource: item.tabs.map((tab, index) => {
-                              if (index === 0) setSelectedTab(tab.title);
+                            dataSource: item.tabs.map(
+                              (
+                                tab: {
+                                  title: any;
+                                },
+                                index: Number
+                              ) => {
+                                if (index === 0) setSelectedTab(tab.title);
 
-                              return tab.title;
-                            }),
+                                return tab.title;
+                              }
+                            ),
                             selectedIndex: 0,
                             onSelectionChanged(e) {
                               setSelectedTab(e.addedItems[0]);
