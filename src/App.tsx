@@ -255,8 +255,6 @@ const App = () => {
       <ContextMenuComponent />
       Dropdown Button
       <DropDownButtonComponent />
-      File Uploader
-      <FileUploaderComponent />
       Linear Gauge
       <LinearGaugeComponent />
       List
@@ -364,6 +362,10 @@ const App = () => {
       <br />
       theme button
       <ThemeButton />
+      <br />
+      <br />
+      File Uploader
+      <FileUploaderComponent />
       <br />
       formbuilder
       <FormBuilder />
