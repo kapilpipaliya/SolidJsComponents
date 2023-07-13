@@ -96,27 +96,33 @@ export function FormBuilder() {
       type = "date";
 
     return (
-      <>
+      <div
+        style={{
+          display: "grid",
+          "grid-template-columns": "repeat(1, 1fr)",
+          // "grid-gap": "20px",
+        }}
+      >
         <label
           style={{
             "font-size": "14px",
             "font-weight": "400",
             "margin-bottom": "10px",
             color: "#111",
-            display: "table-cell",
             "vertical-align": "middle",
             "padding-right": "10px",
-            width: "30%",
             "line-height": "1.35715",
+            // display: "table-cell",
+            // width: "30%",
           }}
         >
           {item.replace(/([A-Z][a-z])/g, " $1").replace(/(\d)/g, " $1")}
         </label>
         <input
           style={{
-            display: "table-cell",
+            // display: "table-cell",
+            // width: "50%",
             "vertical-align": "top",
-            width: "50%",
             "line-height": "1.35715",
             "border-radius": "4px",
             border: "1px solid #ddd",
@@ -126,6 +132,7 @@ export function FormBuilder() {
             // "min-height": "34px",
             "font-size": "14px",
             color: "#333",
+            "margin-bottom": "10px",
           }}
           type={type}
           value={
@@ -134,7 +141,7 @@ export function FormBuilder() {
               : employees[item]
           }
         />
-      </>
+      </div>
     );
   };
 
@@ -144,70 +151,77 @@ export function FormBuilder() {
     const [selectedTab, setSelectedTab] = createSignal("");
 
     return (
-      <For each={groupItemsList}>
-        {(item) => (
-          <>
-            {typeof item === "string" && <>{renderInputElement(item)}</>}
+      <>
+        <For each={groupItemsList}>
+          {(item) => (
+            <>
+              {typeof item === "string" && <>{renderInputElement(item)}</>}
 
-            {typeof item === "object" &&
-              (item.itemType === "group" ? (
-                <>
-                  <h2
+              {typeof item === "object" &&
+                (item.itemType === "group" ? (
+                  <div
                     style={{
-                      "font-weight": 500,
-                      "font-size": "20px",
-                      "margin-bottom": "20px",
+                      "padding-left": "20px",
                     }}
                   >
-                    {item.caption}
-                  </h2>
-                  <br />
-                  {renderFields(item.items)}
-                </>
-              ) : (
-                item.itemType === "tabbed" && (
-                  <>
                     <h2
                       style={{
                         "font-weight": 500,
                         "font-size": "20px",
-                        "margin-bottom": "20px",
                       }}
                     >
                       {item.caption}
                     </h2>
                     <br />
+                    {renderFields(item.items)}
+                  </div>
+                ) : (
+                  item.itemType === "tabbed" && (
                     <div
-                      ref={(el) => {
-                        const instance = new Tabs(el, {
-                          dataSource: item.tabs.map((tab, index) => {
-                            if (index === 0) setSelectedTab(tab.title);
-
-                            return tab.title;
-                          }),
-                          width: "42vw",
-                          selectedIndex: 0,
-                          onSelectionChanged(e) {
-                            setSelectedTab(e.addedItems[0]);
-                          },
-                        });
+                      style={{
+                        "padding-left": "20px",
                       }}
-                    />
-                    <br />
-                    <For each={item.tabs}>
-                      {(tab) => (
-                        <>
-                          {selectedTab() === tab.title &&
-                            renderFields(tab.items)}
-                        </>
-                      )}
-                    </For>
-                  </>
-                )
-              ))}
-          </>
-        )}
-      </For>
+                    >
+                      <h2
+                        style={{
+                          "font-weight": 500,
+                          "font-size": "20px",
+                        }}
+                      >
+                        {item.caption}
+                      </h2>
+                      <br />
+                      <div
+                        ref={(el) => {
+                          const instance = new Tabs(el, {
+                            dataSource: item.tabs.map((tab, index) => {
+                              if (index === 0) setSelectedTab(tab.title);
+
+                              return tab.title;
+                            }),
+                            selectedIndex: 0,
+                            onSelectionChanged(e) {
+                              setSelectedTab(e.addedItems[0]);
+                            },
+                          });
+                        }}
+                      />
+                      <br />
+                      <For each={item.tabs}>
+                        {(tab) => (
+                          <>
+                            {selectedTab() === tab.title &&
+                              renderFields(tab.items)}
+                          </>
+                        )}
+                      </For>
+                    </div>
+                  )
+                ))}
+            </>
+          )}
+        </For>
+      </>
     );
   };
 
@@ -216,6 +230,9 @@ export function FormBuilder() {
       style={{
         "font-family":
           "'Segoe UI Light', 'Helvetica Neue Light', 'Segoe UI', 'Helvetica Neue', 'Trebuchet MS', Verdana",
+        display: "grid",
+        "grid-template-columns": "repeat(2, 1fr)",
+        "grid-gap": "20px",
       }}
     >
       <For each={showItemsList}>
@@ -223,24 +240,14 @@ export function FormBuilder() {
           <div>
             <h1
               style={{
-                "font-weight": 200,
+                "font-weight": 500,
                 "font-size": "28px",
                 "margin-bottom": "20px",
               }}
             >
               {groupItem.caption}
             </h1>
-            <div
-              style={{
-                // format the items in table format with labels and input fields aligned
-                display: "grid",
-                "grid-template-columns": "20% 40%",
-                "grid-column-gap": "20px",
-                "grid-row-gap": "10px",
-              }}
-            >
-              {renderFields(groupItem.items)}
-            </div>
+            {renderFields(groupItem.items)}
           </div>
         )}
       </For>
