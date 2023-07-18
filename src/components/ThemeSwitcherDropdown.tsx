@@ -7,17 +7,38 @@ export const dropdownThemeData = [
   {
     "id": 0,
     "name": "Select Theme",
-    "theme": ""
+    "theme": "",
+    "dxTheme": ""
   },
   {
     "id": 1,
     "name": "Material Blue Light",
-    "theme": "dx-swatch-custom-scheme"
+    "theme": "dx-swatch-custom-scheme",
+    "dxTheme": "material.blue.light"
   },
   {
     "id": 2,
     "name": "Material Orange Light",
-    "theme": "dx-swatch-orange-light"
+    "theme": "dx-swatch-orange-light",
+    "dxTheme": "material.orange.light"
+  },
+  {
+    "id": 3,
+    "name": "General Light",
+    "theme": "dx-swatch-light",
+    "dxTheme": "generic.light"
+  },
+  {
+    "id": 4,
+    "name": "General Carmine",
+    "theme": "dx-swatch-light-compact",
+    "dxTheme": "generic.carmine"
+  },
+  {
+    "id": 5,
+    "name": "General Light Compact",
+    "theme": "dx-swatch-light-compact",
+    "dxTheme": "generic.light.compact"
   }
 ];
 export function ThemeSwitcherDropdown() {

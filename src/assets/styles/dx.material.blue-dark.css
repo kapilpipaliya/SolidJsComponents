@@ -32,7 +32,7 @@
 }
 @font-face {
   font-family: DXIcons;
-  src: local("DevExtreme Material Icons"),local("devextreme_material_icons"),url("../materialbluedarkicons/dxiconsmaterial.woff2") format("woff2"),url("../materialbluedarkicons/dxiconsmaterial.woff") format("woff"),url("../materialbluedarkicons/dxiconsmaterial.ttf") format("truetype");
+  src: local("DevExtreme Material Icons"),local("devextreme_material_icons"),url("../material-icons/dxiconsmaterial.woff2") format("woff2"),url("../material-icons/dxiconsmaterial.woff") format("woff"),url("../material-icons/dxiconsmaterial.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }

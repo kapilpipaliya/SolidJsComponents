@@ -85,13 +85,17 @@ import { DataGridComponent } from "./components/DataGrid";
 import { FilterBuilderComponent } from "./components/FilterBuilder";
 import { GanttComponent } from "./components/Gantt";
 
-// import "./assets/styles/dx.generic.custom-scheme.css";
+import themes from "devextreme/ui/themes";
+import { refreshTheme } from 'devextreme/viz/themes'
+
+// general themes
+import "./assets/styles/dx.generic.light.css";
 import "./assets/styles/dx.material.custom-scheme.css";
 import "./assets/styles/dx.material.orange-light.css";
 
 import { ThemeForm } from "./components/ThemeForm";
 import { ThemeButton } from "./components/ThemeButton";
-import { createSignal } from "solid-js";
+import { createEffect, createSignal } from "solid-js";
 import {
   DropDownThemeField,
   ThemeSwitcherDropdown,
@@ -137,7 +141,19 @@ const App = () => {
   const setValueTheme = (attribute: Vertex, data: any) => {
     console.log(attribute, data);
     setTheme(data.theme);
+    switchTheme(data.dxTheme);
   };
+
+  const switchTheme = (themeName: string) => {
+    window.localStorage.setItem("dx-theme", themeName);
+    window.location.reload();
+  }
+
+  createEffect(() => {
+    themes.current(window.localStorage.getItem("dx-theme") || "generic.light.compact");
+    setTheme(window.localStorage.getItem("dx-theme") || "generic.light.compact");
+    refreshTheme();
+  })
 
   return (
     <div class={theme()}>
