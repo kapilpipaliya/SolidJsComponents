@@ -88,13 +88,6 @@ import { GanttComponent } from "./components/Gantt";
 import themes from "devextreme/ui/themes";
 import { refreshTheme } from 'devextreme/viz/themes'
 
-// general themes
-
-
-
-// swatch theme
-// general themes
-
 import "./assets/styles/themes.css";
 
 
@@ -153,17 +146,21 @@ const App = () => {
   const switchTheme = (themeName: string, swatchTheme: string) => {
     window.localStorage.setItem("dx-theme", themeName);
     window.localStorage.setItem("theme", swatchTheme);
-    // window.location.reload();
   }
 
   createEffect(() => {
     themes.current(window.localStorage.getItem("dx-theme") || "generic.light.compact");
-    setTheme((prevTheme: string) => window.localStorage.getItem("theme") || prevTheme);
+    setTheme(window.localStorage.getItem("theme") || "dx-swatch-light");
     refreshTheme();
   })
 
   return (
-    <div class={theme()}>
+    <div class={theme()} style={{
+      "background-color": theme().includes("dark") ? "#1d1d1d" : "#fff",
+      "color": theme().includes("dark") ? "#fff" : "#000",
+      margin: "0px",
+      padding: "0px",
+    }}>
       {/* theme dropdown */}
       <DropDownThemeField
         meta={metatheme}

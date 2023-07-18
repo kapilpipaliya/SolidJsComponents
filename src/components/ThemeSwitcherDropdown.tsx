@@ -5,12 +5,6 @@ import {newVertex} from "./utils";
 
 export const dropdownThemeData = [
   {
-    "id": 0,
-    "name": "Select Theme",
-    "theme": "",
-    "dxTheme": ""
-  },
-  {
     "id": 1,
     "name": "General Swatch Light",
     "theme": "dx-swatch-light",

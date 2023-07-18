@@ -25,3 +25,8 @@
 
 @import "./dx.generic.carmine.css";
 @import "./dx.generic.dark.css";
+
+body {
+    margin: 0;
+    padding: 0;
+}
