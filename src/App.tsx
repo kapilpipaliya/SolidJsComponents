@@ -89,9 +89,15 @@ import themes from "devextreme/ui/themes";
 import { refreshTheme } from 'devextreme/viz/themes'
 
 // general themes
-import "./assets/styles/dx.generic.light.css";
-import "./assets/styles/dx.material.custom-scheme.css";
-import "./assets/styles/dx.material.orange-light.css";
+
+
+
+// swatch theme
+// general themes
+
+import "./assets/styles/themes.css";
+
+
 
 import { ThemeForm } from "./components/ThemeForm";
 import { ThemeButton } from "./components/ThemeButton";
@@ -141,17 +147,18 @@ const App = () => {
   const setValueTheme = (attribute: Vertex, data: any) => {
     console.log(attribute, data);
     setTheme(data.theme);
-    switchTheme(data.dxTheme);
+    switchTheme(data.dxTheme, data.theme);
   };
 
-  const switchTheme = (themeName: string) => {
+  const switchTheme = (themeName: string, swatchTheme: string) => {
     window.localStorage.setItem("dx-theme", themeName);
-    window.location.reload();
+    window.localStorage.setItem("theme", swatchTheme);
+    // window.location.reload();
   }
 
   createEffect(() => {
     themes.current(window.localStorage.getItem("dx-theme") || "generic.light.compact");
-    setTheme(window.localStorage.getItem("dx-theme") || "generic.light.compact");
+    setTheme((prevTheme: string) => window.localStorage.getItem("theme") || prevTheme);
     refreshTheme();
   })
 
@@ -162,6 +169,7 @@ const App = () => {
         meta={metatheme}
         data={dataTheme}
         setValue={setValueTheme}
+        theme={theme()}
       />
       <TextInputField meta={meta} data={data} setValue={setValue} />
       Validation Text Input

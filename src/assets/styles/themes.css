@@ -1,0 +1,27 @@
+/* swatch themes */
+
+/* general */
+@import "./dx.generic.light.swatch.css";
+@import "./dx.generic.dark.swatch.css";
+@import "./dx.generic.carmine.swatch.css";
+@import "./dx.generic.dark-moon-swatch.css";
+@import "./dx.generic.dark-violet-swatch.css";
+@import "./dx.generic.green-mist-swatch.css";
+@import "./dx.generic.soft-blue-swatch.css";
+@import "./dx.generic.contrast.swatch.css";
+
+/* compact */
+@import "./dx.generic.light-compact.swatch.css";
+@import "./dx.generic.dark-compact.swatch.css";
+
+/* material */
+@import "./dx.material.custom-scheme.css";
+@import "./dx.material.orange-light.css";
+
+/* normal themes */
+@import "./dx.generic.light.css";
+
+@import "./dx.material.blue-dark.css";
+
+@import "./dx.generic.carmine.css";
+@import "./dx.generic.dark.css";
