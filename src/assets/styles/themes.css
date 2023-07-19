@@ -13,10 +13,38 @@
 /* compact */
 @import "./dx.generic.light-compact.swatch.css";
 @import "./dx.generic.dark-compact.swatch.css";
+@import "./dx.generic.carmine-compact.swatch.css";
+@import "./dx.generic.dark-moon-compact.swatch.css";
+@import "./dx.generic.dark-violet-compact.swatch.css";
+@import "./dx.generic.green-mist-compact.swatch.css";
+@import "./dx.generic.soft-blue-compact.swatch.css";
+@import "./dx.generic.contrast-compact.swatch.css";
 
 /* material */
-@import "./dx.material.custom-scheme.css";
-@import "./dx.material.orange-light.css";
+@import "./materialthemes/dx.material.blue-light.css";
+@import "./materialthemes/dx.material.blue-dark.css";
+@import "./materialthemes/dx.material.lime-light.css";
+@import "./materialthemes/dx.material.lime-dark.css";
+@import "./materialthemes/dx.material.orange-light.css";
+@import "./materialthemes/dx.material.orange-dark.css";
+@import "./materialthemes/dx.material.purple-light.css";
+@import "./materialthemes/dx.material.purple-dark.css";
+@import "./materialthemes/dx.material.teal-light.css";
+@import "./materialthemes/dx.material.teal-dark.css";
+
+/* material compact */
+@import "./materialthemes/dx.material.blue-light-compact.css";
+@import "./materialthemes/dx.material.blue-dark-compact.css";
+@import "./materialthemes/dx.material.lime-light-compact.css";
+@import "./materialthemes/dx.material.lime-dark-compact.css";
+@import "./materialthemes/dx.material.orange-light-compact.css";
+@import "./materialthemes/dx.material.orange-dark-compact.css";
+@import "./materialthemes/dx.material.purple-light-compact.css";
+@import "./materialthemes/dx.material.purple-dark-compact.css";
+@import "./materialthemes/dx.material.teal-light-compact.css";
+@import "./materialthemes/dx.material.teal-dark-compact.css";
+
+
 
 /* normal themes */
 @import "./dx.generic.light.css";
@@ -26,7 +54,3 @@
 @import "./dx.generic.carmine.css";
 @import "./dx.generic.dark.css";
 
-body {
-    margin: 0;
-    padding: 0;
-}

@@ -87,10 +87,10 @@ import { GanttComponent } from "./components/Gantt";
 
 import themes from "devextreme/ui/themes";
 import { refreshTheme } from 'devextreme/viz/themes'
+// @ts-ignore
+import { dropdownThemeData, getBackgroundColor } from "./data/dropdownThemeData";
 
 import "./assets/styles/themes.css";
-
-
 
 import { ThemeForm } from "./components/ThemeForm";
 import { ThemeButton } from "./components/ThemeButton";
@@ -98,7 +98,6 @@ import { createEffect, createSignal } from "solid-js";
 import {
   DropDownThemeField,
   ThemeSwitcherDropdown,
-  dropdownThemeData,
 } from "./components/ThemeSwitcherDropdown";
 import { FormBuilder } from "./components/FormBuilder";
 
@@ -156,10 +155,9 @@ const App = () => {
 
   return (
     <div class={theme()} style={{
-      "background-color": theme().includes("dark") ? "#1d1d1d" : "#fff",
-      "color": theme().includes("dark") ? "#fff" : "#000",
-      margin: "0px",
-      padding: "0px",
+      "background-color": getBackgroundColor(theme()).background,
+      "color": getBackgroundColor(theme()).color,
+      padding: "8px",
     }}>
       {/* theme dropdown */}
       <DropDownThemeField
