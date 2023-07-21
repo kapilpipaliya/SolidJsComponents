@@ -85,17 +85,19 @@ import { DataGridComponent } from "./components/DataGrid";
 import { FilterBuilderComponent } from "./components/FilterBuilder";
 import { GanttComponent } from "./components/Gantt";
 
-// import "./assets/styles/dx.generic.custom-scheme.css";
-import "./assets/styles/dx.material.custom-scheme.css";
-import "./assets/styles/dx.material.orange-light.css";
+import themes from "devextreme/ui/themes";
+import { refreshTheme } from 'devextreme/viz/themes'
+// @ts-ignore
+import { dropdownThemeData, getBackgroundColor } from "./data/dropdownThemeData";
+
+import "./assets/styles/themes.css";
 
 import { ThemeForm } from "./components/ThemeForm";
 import { ThemeButton } from "./components/ThemeButton";
-import { createSignal } from "solid-js";
+import { createEffect, createSignal } from "solid-js";
 import {
   DropDownThemeField,
   ThemeSwitcherDropdown,
-  dropdownThemeData,
 } from "./components/ThemeSwitcherDropdown";
 import { FormBuilder } from "./components/FormBuilder";
 
@@ -137,15 +139,32 @@ const App = () => {
   const setValueTheme = (attribute: Vertex, data: any) => {
     console.log(attribute, data);
     setTheme(data.theme);
+    switchTheme(data.dxTheme, data.theme);
   };
 
+  const switchTheme = (themeName: string, swatchTheme: string) => {
+    window.localStorage.setItem("dx-theme", themeName);
+    window.localStorage.setItem("theme", swatchTheme);
+  }
+
+  createEffect(() => {
+    themes.current(window.localStorage.getItem("dx-theme") || "generic.light.compact");
+    setTheme(window.localStorage.getItem("theme") || "dx-swatch-light");
+    refreshTheme();
+  })
+
   return (
-    <div class={theme()}>
+    <div class={theme()} style={{
+      "background-color": getBackgroundColor(theme()).background,
+      "color": getBackgroundColor(theme()).color,
+      padding: "8px",
+    }}>
       {/* theme dropdown */}
       <DropDownThemeField
         meta={metatheme}
         data={dataTheme}
         setValue={setValueTheme}
+        theme={theme()}
       />
       <TextInputField meta={meta} data={data} setValue={setValue} />
       Validation Text Input

@@ -2,24 +2,9 @@ import {createEffect, For, Show} from "solid-js";
 import {ComponentProps, Vertex} from "./Form";
 import DropDownButton, {Properties} from "devextreme/ui/drop_down_button";
 import {newVertex} from "./utils";
+// @ts-ignore
+import { dropdownThemeData } from "../data/dropdownThemeData";
 
-export const dropdownThemeData = [
-  {
-    "id": 0,
-    "name": "Select Theme",
-    "theme": ""
-  },
-  {
-    "id": 1,
-    "name": "Material Blue Light",
-    "theme": "dx-swatch-custom-scheme"
-  },
-  {
-    "id": 2,
-    "name": "Material Orange Light",
-    "theme": "dx-swatch-orange-light"
-  }
-];
 export function ThemeSwitcherDropdown() {
   const meta = newVertex(0, ["Meta"], {
     id: "meta",
@@ -31,9 +16,10 @@ export function ThemeSwitcherDropdown() {
     console.log(attribute, data);
   };
 
-  return <DropDownThemeField meta={meta} data={data} setValue={setValue} />
+  return <DropDownThemeField meta={meta} data={data} setValue={setValue} theme={""} />
 }
-export function DropDownThemeField(props: ComponentProps) {
+export function DropDownThemeField(props: ComponentProps & { theme: string}) {
+
   return (
     <div aria-labelledby={props["aria-labeledby"]}>
       <div
@@ -42,8 +28,8 @@ export function DropDownThemeField(props: ComponentProps) {
             displayExpr: "name",
             items: props.data.properties[props.meta.properties.id],
             keyExpr: "id",
-            selectedItemKey: 0,
             stylingMode: "text",
+            selectedItemKey: 0,
             useSelectMode: true,
             // 'Select Theme'
 
@@ -59,6 +45,16 @@ export function DropDownThemeField(props: ComponentProps) {
             )
           );
           createEffect(() => {
+            console.log(props.theme);
+            if(props.theme !== "") {
+              console.log(props.data.properties[props.meta.properties.id]);
+              props.data.properties[props.meta.properties.id].forEach((item: any) => {
+                if(item.theme === props.theme) {
+                  console.log(item, props.theme);
+                  instance.option("selectedItemKey", item.id);
+                }
+              });
+            }
             for (const property in props.meta.properties.props as Properties) {
               instance.option(property, props.meta.properties.props[property]);
             }
